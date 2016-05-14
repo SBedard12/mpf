@@ -1,0 +1,37 @@
+{
+  "name": "web_dev",
+  "authors": [
+    "Francois Noel <franknoel@live.fr>"
+  ],
+  "description": "dependency",
+  "main": "index.php",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "html5",
+    "css3",
+    "php",
+    "js"
+  ],
+  "license": "MIT",
+  "homepage": "index.php",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "susy": "^2.2.12",
+    "jquery": "^2.2.0",
+    "bourbon": "^4.2.6",
+    "normalize-scss": "^3.0.3",
+    "animate.css": "^3.5.1",
+    "jquery.easy-pie-chart": "~2.1.6",
+    "waypoints": "^4.0.0",
+    "fancybox": "~2.1.5"
+  }
+}

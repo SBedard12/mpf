@@ -1,0 +1,77 @@
+@font-face {
+    font-family: 'mpfFont';
+    src:    url('fonts/mpfFont.eot?9drf8c');
+    src:    url('fonts/mpfFont.eot?9drf8c#iefix') format('embedded-opentype'),
+        url('fonts/mpfFont.ttf?9drf8c') format('truetype'),
+        url('fonts/mpfFont.woff?9drf8c') format('woff'),
+        url('fonts/mpfFont.svg?9drf8c#mpfFont') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="mpf-"], [class*=" mpf-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'mpfFont' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.mpf-tcheck:before {
+    content: "\e902";
+}
+.mpf-th-small-outline:before {
+    content: "\e903";
+}
+.mpf-openMenu:before {
+    content: "\e904";
+}
+.mpf-home:before {
+    content: "\e905";
+}
+.mpf-trash:before {
+    content: "\e906";
+}
+.mpf-warning:before {
+    content: "\e907";
+}
+.mpf-profile:before {
+    content: "\e908";
+}
+.mpf-password:before {
+    content: "\e909";
+}
+.mpf-setting:before {
+    content: "\e90a";
+}
+.mpf-logOut:before {
+    content: "\e900";
+}
+.mpf-pencil:before {
+    content: "\e90b";
+}
+.mpf-edit:before {
+    content: "\e90c";
+}
+.mpf-calender:before {
+    content: "\e90d";
+}
+.mpf-arrow-right:before {
+    content: "\e90e";
+}
+.mpf-arrow-left:before {
+    content: "\e90f";
+}
+.mpf-bell:before {
+    content: "\e910";
+}
+.mpf-phone:before {
+    content: "\e911";
+}

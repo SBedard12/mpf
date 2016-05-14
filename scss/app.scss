@@ -1,0 +1,397 @@
+/*Importation des fichiers nécéssaires*/
+@import "partials/susy";
+@import "partials/normalize";
+@import "partials/mixin";
+@import "mpfIconsFont";
+
+/*Variables des couleurs*/
+
+$noir: #000000;
+$blanc: #ffffff;
+$grisPale: #949494;
+$grisFoncee: #3e3e3e;
+
+$primaryColor: #E07B22;
+$background: #f6f6f6;
+$erreur: #d65d5d;
+
+$catAmour: #d65d5d;
+$catFamille: #5db5d6;
+$catAmis: #48b586;
+$catVoyages: #cf964c;
+$catAutre: #949494;
+
+
+
+
+
+//-------------------------------------------//
+// 01 SCSS INITIALISATION DE SUSY SUR 12 COLLONES
+//-------------------------------------------//
+$susy: (
+        columns: 8,
+        container: 100%,
+        global-box-sizing: border-box,
+      //  debug:(image:show),
+
+);
+
+.container{
+  @include container;
+}
+
+html{
+
+	height: 100%;
+	position: relative;
+	top: 0;
+}
+body{
+	font-family: Montserrat;
+	overflow-x: hidden;
+	font-size: 16px;
+	background-color: $background;
+	@include box-sizing();
+}
+#front-page{
+	background-color: #5db5d6;
+  background-image: url("../images/indexBackground/1.png");
+
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: bottom;
+  .logo{
+      border-bottom:solid 1px $blanc;
+    p{
+      color: $blanc;
+      padding: 10px;
+      border: solid 1px $blanc;
+      display: inline-block;
+      margin: 20px;
+    }
+  }
+  .media-sociaux{
+    padding: 0;
+    list-style-type: none;
+    float: right;
+    padding-right: 40px;
+    li{
+      display: inline-block;
+      cursor: pointer;
+      margin-top: 10px;
+      margin-right: 20px;
+      &:hover{
+        svg{
+          fill: $primaryColor;
+        }
+
+      }
+    }
+  }
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+h1,h2,h3,h4,p{
+	margin:0;
+}
+.load-more{
+	text-align: center;
+	margin-bottom: 60px;
+	cursor: pointer;
+}
+//-------------------------------------------//
+// 03 SCSS pour les erreurs dans l'app
+//-------------------------------------------//
+.erreurForm{
+	color: $blanc;
+	width: 100%;
+	border-radius: 10px;
+    background-color: $erreur;
+    line-height: 40px;
+    text-align: center;
+	@include box-sizing();
+}
+
+
+
+//-------------------------------------------//
+// 03 SCSS pour la navigation de l'index
+//-------------------------------------------//
+// .ligneHeader{
+// 	height: 5px;
+// 	background-color: $grisPale;
+// 	position: relative;
+// 	top: 120px;
+// }
+.cont-Header-wrapper{
+	margin:auto;
+	max-width: 350px;
+	padding-top: 40px;
+	padding-bottom: 10px;
+	color: $blanc;
+	ul{
+		list-style-type: none;
+		padding: 0;
+		display: inline-flex;
+		position: relative;
+		// &:after{
+		// 	transition: all 0.2s ease-in-out;
+		// 	content: "";
+		// 	width:45%;
+		// 	height:5px;
+		// 	position: absolute;
+		// 	background-color: $blanc;
+		// 	bottom:-10px;
+		// 	right:10px;
+		// }
+		li{
+			padding: 20px;
+			cursor: pointer;
+      &:hover{
+        text-decoration: underline;
+      }
+		}
+			li.active{
+				color: $grisFoncee;
+        text-decoration: underline;
+        color: #3e3e3e;
+        background-color: #fff;
+        border-radius: 5px;
+
+			}
+	}
+	ul.changed {
+		// &:after{
+		// 	transform: translateX(-130px);
+		// }
+	}
+}
+
+//-------------------------------------------//
+// 03 SCSS pour la section de form de l'index
+//-------------------------------------------//
+.content-page-index{
+	width: 100%;
+
+	.cont-inscription-wrapper, .cont-connexion-wrapper{
+		margin:auto;
+		max-width: 350px;
+	}
+}
+
+.btn-action{
+	border: none;
+	background-color: #E07B22;
+	width: span(8);
+	height: 60px;
+	border-radius: 5px;
+	color: $blanc;
+	margin:20px 0px;
+}
+
+input[type="text"],input[type="password"],input[type="email"], textarea, select{
+	width: span(8);
+	border: none;
+	background-color: $blanc;
+	height: 55px;
+	border-radius: 5px;
+	color: $grisFoncee;
+	padding: 10px;
+	margin-top: 5px;
+	margin-bottom: 20px;
+	@include box-sizing();
+}
+label{
+	color: $blanc;
+}
+//-------------------------------------------//
+// 03 SCSS pour la navigation du header
+//-------------------------------------------//
+header{
+	background-color: $grisFoncee;
+	width: 40px;
+	position: fixed;
+	min-height: 100%;
+	ul{
+		list-style-type: none;
+		padding: 0;
+		li{
+			text-align: center;
+			margin-bottom: 15px;
+      position: relative;
+			&:hover{
+				background-color: darken($grisFoncee, 5%);
+        .hover-liste-cont{
+          display: block;
+        }
+			}
+			a{
+				color: $blanc;
+				text-decoration: none;
+				font-size:25px;
+
+			}
+      .hover-liste-cont{
+        display: none;
+        font-size: 14px;
+        color: $blanc;
+        background-color: darken($grisFoncee, 5%);
+        padding: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        position: absolute;
+        top: 0px;
+        left: 50px;
+        z-index:9999;
+        &:before{
+
+          content:"\A";
+     border-style: solid;
+     border-width: 10px 15px 10px 0;
+     border-color: transparent darken($grisFoncee, 5%) transparent transparent;
+     position: absolute;
+     left: -7px
+        }
+      }
+		}
+	}
+}
+#accueil, #creePost, #profile{
+	margin-left: 40px;
+}
+
+//-------------------------------------------//
+// 03 SCSS pour afficher un post
+//-------------------------------------------//
+.add-post{
+	a{
+		text-decoration: none;
+		width: 60px;
+		height: 60px;
+		border-radius: 50%;
+		background-color: $primaryColor;
+		position: fixed;
+		bottom: 20px;
+		right: 20px;
+		-webkit-box-shadow: 0px 3px 10px 0px rgba(50, 50, 50, 0.2);
+		-moz-box-shadow:    0px 3px 10px 0px rgba(50, 50, 50, 0.2);
+		box-shadow:         0px 3px 10px 0px rgba(50, 50, 50, 0.2);
+	}
+	i{
+		color: $blanc;
+		font-size: 25px;
+		position: absolute;
+		left: 27%;
+		top:50%;
+		transform: translateY(-50%);
+
+	}
+
+}
+.un-post{
+	width: 100%;
+	max-width: 600px;
+	margin: auto;
+	.cat-post{
+		height: 60px;
+		p{
+			position: relative;
+			top: 50%;
+			transform: translateY(-50%);
+			font-size: 18px;
+			padding-left: 40px;
+			color: $blanc;
+		}
+	}
+  .Famille{
+    background-color: $catFamille;
+  }
+  .Alcool{
+    background-color: #E07B22;
+  }
+  .Amour{
+    background-color: $catAmour;
+  }
+  .Humour{
+    background-color: $catAmis;
+
+  }
+
+	.info-post{
+		background-color: $blanc;
+		-webkit-box-shadow: 0px 3px 10px 0px rgba(50, 50, 50, 0.2);
+		-moz-box-shadow:    0px 3px 10px 0px rgba(50, 50, 50, 0.2);
+		box-shadow:         0px 3px 10px 0px rgba(50, 50, 50, 0.2);
+		padding: 40px;
+		color: $grisFoncee;
+		margin-bottom: 40px;
+		.info-perso-post{
+			position: relative;
+			img{
+				width:70px;
+				height:70px;
+				border-radius: 50%;
+				background-color: $grisPale;
+
+			}
+			.username-post{
+				font-size: 16px;
+				position: absolute;
+				top:50%;
+				transform: translateY(-50%);
+				left: 100px;
+			}
+		}
+		.titre-post{
+			font-size:16px;
+			width: 100%;
+		}
+		.description-post{
+			font-size: 14px;
+			margin-top: 5px;
+		}
+		.date-post{
+			color: $grisPale;
+			font-size: 12px;
+			width: 100%;
+			margin-top: 10px;
+			margin-bottom: 5px;
+		}
+	}
+}
+//-------------------------------------------//
+// 03 SCSS pour une page de section ex prifile et création post
+//-------------------------------------------//
+.entete-section{
+	height:85px;
+	background-color: $primaryColor;
+
+	.titre-section{
+		color: $blanc;
+		position:relative;
+		top: 50%;
+		transform: translateY(-50%);
+		font-weight: 400;
+		margin-left: 20px;
+		i{
+			font-size: 30px;
+		}
+	}
+}
+.info-section{
+	padding: 20px;
+	max-width: 800px;
+	margin: auto;
+		label{
+			width: 100%;
+			display: block;
+			textarea{
+				max-width: 100%;
+				height: 200px;
+			}
+			select{
+				width: 100%;
+			}
+		}
+}
