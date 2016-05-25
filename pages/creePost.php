@@ -31,6 +31,7 @@ exit() ;
 						<label> Votre article <textarea type="text"name="description" placeholder="Rancontez votre histoire ..."><?php if(isset($strDesciption)){echo $strDesciption;} ?></textarea></label>
 
 						<p class="erreurForm"><?php echo $msgErreur; ?></p>
+						<p class="acceptForm"><?php echo $msgAccept; ?></p>
 							<input type="hidden" name="date" value="<?php echo date("Y-m-j"); ?>">
 	          <input class="btn-action" type="submit" value="Publier" name="publier">
 					</form>
@@ -39,6 +40,8 @@ exit() ;
 	</main>
   <footer></footer>
 </body>
+<script src="../js/header.js"></script>
+<script src="../js/header.js"></script>
 </html>
 
 <?php

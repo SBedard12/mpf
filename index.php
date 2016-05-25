@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <?php
@@ -6,13 +5,17 @@
 ?>
 <html>
 <head>
-<title>Ma premiere fois</title>
-<link rel="stylesheet" type="text/css" href="css/app.css">
-<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-
+	<title>Ma premiere fois</title>
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body id="front-page">
-
+	<noscript>
+		<div class="noscripts">
+			<p>*Attention, actiez votre Javascript pour une meilleure expérience</p>
+			<a href="http://www.enable-javascript.com/fr/" target="_blank"> Voir comment activer son Javascript </a>
+		</div>
+	</noscript>
 	<div class="logo">
 		<p> Ma première fois </p>
 		<ul class="media-sociaux">

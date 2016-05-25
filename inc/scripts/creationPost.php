@@ -1,19 +1,13 @@
 <?php
-//connexion à la base de donnée en locale
-$servernameBd = "localhost";
-$usernameBd = "root";
-$passwordBd = "";
-$dbname = "TIM_bedards_mpf_DB";
-// Create connection
-$conn = new mysqli($servernameBd, $usernameBd, $passwordBd, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
+// Importation du fichier de configuration
+require_once("config.php");
+
+// Variables
 $msgErreur = "";
+$msgAccept = "";
 
-
+// Si le btn publier est clicker
 if(isset($_POST['publier'])){
 
   $strTitre = $_POST['titre'];
@@ -22,6 +16,7 @@ if(isset($_POST['publier'])){
   $datePost = $_POST['date'];
   $useid = $_SESSION['id'];
 
+  // Validation sur les informations du formulaire d'un article
   if($strTitre == "" || $strDesciption == ""){
     $msgErreur = "Remplir tous les champs svps";
   }elseif(strlen($strTitre) < 3){
@@ -30,17 +25,16 @@ if(isset($_POST['publier'])){
       $msgErreur = "La description est trop court";
   }
   else{
+    // Requête SQL pour ajouter un article dans la base de donnée
     $sqlPost = "INSERT INTO t_posts (titre_post, description_post, id_categorie, date_post, user_id)
         VALUES ('$strTitre', '$strDesciption', '$idCategorie', '$datePost', '$useid')";
 
     if (mysqli_query($conn, $sqlPost)) {
-
-        echo "New records created successfully";
-
+        $msgAccept = "New records created successfully";
     } else {
-
         echo "Error: " . $sqlPost . "<br>" . $conn->error;
     }
   }
 
 }
+$conn->close();

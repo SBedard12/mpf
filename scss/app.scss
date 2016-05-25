@@ -13,7 +13,7 @@ $grisFoncee: #3e3e3e;
 
 $primaryColor: #E07B22;
 $background: #f6f6f6;
-$erreur: #d65d5d;
+$erreur: #C71F22;
 
 $catAmour: #d65d5d;
 $catFamille: #5db5d6;
@@ -45,13 +45,45 @@ html{
 	height: 100%;
 	position: relative;
 	top: 0;
+  @include box-sizing();
 }
 body{
 	font-family: Montserrat;
 	overflow-x: hidden;
 	font-size: 16px;
+  background-image: url("../images/pattern.jpg");
 	background-color: $background;
 	@include box-sizing();
+}
+ul{
+  padding: 0;
+}
+noscript{
+  position: fixed;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.9);
+  .noscripts{
+    width: 300px;
+    margin: auto;
+    background-color: $erreur;
+    padding: 40px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%);
+    color: $blanc;
+    z-index: 10;
+
+    a{
+      font-size: 12px;
+      text-align: center;
+      color: $blanc;
+      text-decoration: underline;
+    }
+  }
+
 }
 #front-page{
 	background-color: #5db5d6;
@@ -95,15 +127,71 @@ input:-webkit-autofill {
 h1,h2,h3,h4,p{
 	margin:0;
 }
+a{
+  text-decoration: none;
+}
+.mpf-trash{
+  &:hover{
+    color: $erreur;
+  }
+}
 .load-more{
 	text-align: center;
 	margin-bottom: 60px;
 	cursor: pointer;
+  color: $grisFoncee;
+}
+button#btn_more {
+  border: none;
+  width: 200px;
+  padding: 20px;
+  border-radius: 5px;
+
+}
+.btn-retour{
+
+  font-size: 30px;
+  position: relative;
+
+
+  .mpf-arrow-left{
+    color: $primaryColor;
+    position: absolute;
+    border-radius: 50%;
+    border: solid 1px $primaryColor;
+    top: 38px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    transition: all 0.3s ease-in-out;
+    &:after{
+      content: 'Retour';
+      position: absolute;
+      font-family: Montserrat;
+      font-size: 16px;
+      left: 0;
+      top: 7px;
+      -webkit-opacity: 0;
+      transition: all 0.3s ease-in-out;
+      z-index: -1;
+    }
+    &:hover{
+      background-color: $primaryColor;
+      color: $blanc;
+      &:after{
+        -webkit-opacity: 1;
+        color: $primaryColor;
+        transform: translateX(40px);
+      }
+
+    }
+  }
+
 }
 //-------------------------------------------//
 // 03 SCSS pour les erreurs dans l'app
 //-------------------------------------------//
-.erreurForm{
+.erreurForm, .acceptForm{
 	color: $blanc;
 	width: 100%;
 	border-radius: 10px;
@@ -112,18 +200,15 @@ h1,h2,h3,h4,p{
     text-align: center;
 	@include box-sizing();
 }
+.acceptForm{
+    background-color: $catAmis;
+}
 
 
 
 //-------------------------------------------//
 // 03 SCSS pour la navigation de l'index
 //-------------------------------------------//
-// .ligneHeader{
-// 	height: 5px;
-// 	background-color: $grisPale;
-// 	position: relative;
-// 	top: 120px;
-// }
 .cont-Header-wrapper{
 	margin:auto;
 	max-width: 350px;
@@ -135,16 +220,6 @@ h1,h2,h3,h4,p{
 		padding: 0;
 		display: inline-flex;
 		position: relative;
-		// &:after{
-		// 	transition: all 0.2s ease-in-out;
-		// 	content: "";
-		// 	width:45%;
-		// 	height:5px;
-		// 	position: absolute;
-		// 	background-color: $blanc;
-		// 	bottom:-10px;
-		// 	right:10px;
-		// }
 		li{
 			padding: 20px;
 			cursor: pointer;
@@ -188,11 +263,15 @@ h1,h2,h3,h4,p{
 	border-radius: 5px;
 	color: $blanc;
 	margin:20px 0px;
+  transition: all 0.3s ease-in-out;
+  &:hover{
+    background-color: darken($primaryColor, 10%);
+  }
 }
 
 input[type="text"],input[type="password"],input[type="email"], textarea, select{
 	width: span(8);
-	border: none;
+  border: solid 1px $grisPale;
 	background-color: $blanc;
 	height: 55px;
 	border-radius: 5px;
@@ -203,7 +282,7 @@ input[type="text"],input[type="password"],input[type="email"], textarea, select{
 	@include box-sizing();
 }
 label{
-	color: $blanc;
+	color: $grisFoncee;
 }
 //-------------------------------------------//
 // 03 SCSS pour la navigation du header
@@ -213,25 +292,29 @@ header{
 	width: 40px;
 	position: fixed;
 	min-height: 100%;
+  z-index: 2;
 	ul{
 		list-style-type: none;
 		padding: 0;
+    a{
+      color: $blanc;
+      text-decoration: none;
+      font-size:25px;
+
+    }
 		li{
-			text-align: center;
+			text-align: left;
+      padding-left: 7px;
 			margin-bottom: 15px;
       position: relative;
+
 			&:hover{
 				background-color: darken($grisFoncee, 5%);
         .hover-liste-cont{
           display: block;
         }
 			}
-			a{
-				color: $blanc;
-				text-decoration: none;
-				font-size:25px;
 
-			}
       .hover-liste-cont{
         display: none;
         font-size: 14px;
@@ -255,12 +338,54 @@ header{
         }
       }
 		}
+    li.open-menu {
+    position: absolute;
+    bottom: 0;
+    }
 	}
+    transition: all 0.3s ease-in-out;
+  &.open{
+    width: 200px;
+    overflow: hidden;
+    ul{
+      li{
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        .hover-liste-cont{
+          display: block;
+          background-color: transparent;
+          &:before{
+            content: "";
+            border: none;
+          }
+        }
+        &:hover{
+          padding-left: 15px;
+        }
+      }
+    }
+  }
 }
 #accueil, #creePost, #profile{
 	margin-left: 40px;
-}
 
+}
+.welcome{
+  max-width: 600px;
+  margin: auto;
+  padding: 30px;
+  text-align: center;
+  p{
+    text-align: left;
+  }
+}
+.classement-title{
+  max-width: 600px;
+  margin: auto;
+  padding-bottom: 50px;
+  padding-top: 100px;
+  text-align: center;
+}
 //-------------------------------------------//
 // 03 SCSS pour afficher un post
 //-------------------------------------------//
@@ -289,10 +414,31 @@ header{
 	}
 
 }
-.un-post{
+.Famille{
+  background-color: $catFamille;
+}
+.Alcool{
+  background-color: #945DD0;
+}
+.Amour{
+  background-color: $catAmour;
+}
+.Humour{
+  background-color: $catAmis;
+
+}
+
+@keyframes opacitysPost {
+  0% {opacity: 0; transform: translateY(15px);}
+  100% {opacity: 1}
+}
+
+
+.un-post, .un-post-cla{
 	width: 100%;
 	max-width: 600px;
 	margin: auto;
+  animation: opacitysPost 0.7s ease-in-out;
 	.cat-post{
 		height: 60px;
 		p{
@@ -304,19 +450,6 @@ header{
 			color: $blanc;
 		}
 	}
-  .Famille{
-    background-color: $catFamille;
-  }
-  .Alcool{
-    background-color: #E07B22;
-  }
-  .Amour{
-    background-color: $catAmour;
-  }
-  .Humour{
-    background-color: $catAmis;
-
-  }
 
 	.info-post{
 		background-color: $blanc;
@@ -346,6 +479,7 @@ header{
 		.titre-post{
 			font-size:16px;
 			width: 100%;
+      margin-bottom: 15px;
 		}
 		.description-post{
 			font-size: 14px;
@@ -386,6 +520,7 @@ header{
 		label{
 			width: 100%;
 			display: block;
+      text-align: left;
 			textarea{
 				max-width: 100%;
 				height: 200px;
@@ -394,4 +529,182 @@ header{
 				width: 100%;
 			}
 		}
+    .profile-image{
+      border-radius: 50%;
+      border: solid 2px $primaryColor;
+      width: 160px;
+      height: 160px;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+    }
+}
+.recents-posts{
+  h2{
+    margin: 20px 0px;
+  }
+  .recent-post{
+    @include box-sizing();
+    width: 100%;
+    padding: 15px 0;
+    display: -webkit-inline-box;
+    position: relative;
+    border-bottom: solid 1px $grisPale;
+    .recent-post-categorie{
+      width: 20px;
+      height: 20px;
+
+      border-radius: 50%;
+      display: block;
+      margin-right: 20px;
+    }
+    .recent-post-title{
+      margin-right: 20px;
+    }
+    .recent-post-date{
+      color: $grisPale;
+    }
+    ul{
+      padding: 0;
+      list-style-type: none;
+      position: absolute;
+      top: -6px;
+      right: 15px;
+      li{
+        display: inline;
+        font-size: 30px;
+        cursor: pointer;
+
+        }
+        .mpf-pencil{
+          &:hover{
+            color: $primaryColor
+          }
+        }
+        .mpf-trash{
+          &:after{
+            content:"Supprimer";
+            color: $erreur;
+            position: absolute;
+            font-size: 12px;
+            padding: 5px;
+            font-family:Montserrat;
+            display: none;
+          }
+          &:hover{
+            &:after{
+              display: block;
+              top: 5px;
+              left: 67px;
+            }
+          }
+      }
+    }
+      &.deletPost{
+         transition: all 0.3s ease-in-out;
+         transform: translateX(100%);
+         -webkit-ransform: translateX(100%);
+         -moz-ransform: translateX(100%);
+         opacity: 0;
+        }
+    .modifer-post{
+      width: 100%;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      margin: auto;
+      background-color:$background;
+      border: solid 2px $primaryColor;
+      border-radius: 10px;
+      -webkit-transform: translateY(-60%);
+      -moz-transform: translateY(-60%);
+      transform: translateY(-60%);
+      display: none;
+      -webkit-box-shadow: 0px 15px 28px 0px rgba(50, 50, 50, 0.75);
+      -moz-box-shadow:    0px 15px 28px 0px rgba(50, 50, 50, 0.75);
+      box-shadow:         0px 15px 28px 0px rgba(50, 50, 50, 0.75);
+      position: absolute;
+      z-index: 10;
+      left: -4%;
+      h2{
+        margin-bottom: 15px;
+      }
+      .closePopup{
+
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+
+      }
+    }
+  }
+}
+.emptyPost{
+  width: 100%;
+  text-align: center;
+  p{
+    color: $grisPale;
+    margin-bottom: 30px;
+  }
+  i{
+    padding: 15px;
+    background-color: $primaryColor;
+    font-size: 25px;
+    border-radius: 50% ;
+    color: $blanc;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    position: relative;
+
+    &:hover{
+      background-color: darken( $primaryColor, 10%)
+    }
+
+  }
+}
+
+.classement-post{
+  color: $blanc;
+  position: fixed;
+  width: 25px;
+  height: 25px;
+  font-size: 25px;
+  right: 20px;
+  bottom: 20px;
+  padding: 14px;
+  background-color: $primaryColor;
+  border-radius: 50%;
+  cursor: pointer;
+  .btn-menu-open{
+    z-index: 999;
+  }
+  ul{
+    z-index: 1;
+    list-style-type: none;
+    li{
+      transition: all 0.5s ease-in-out;
+      position: absolute;
+      color: $noir;
+      top: 0px;
+       opacity: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      left: 7px;
+      z-index: -1;
+      -webkit-box-shadow: 0px 3px 9px 0px rgba(50, 50, 50, 0.75);
+      -moz-box-shadow:    0px 3px 9px 0px rgba(50, 50, 50, 0.75);
+      box-shadow:         0px 3px 9px 0px rgba(50, 50, 50, 0.75);
+      &:hover{
+        transition: all 0.2s ease-in-out;
+        transform: scale(1.1);
+      }
+      &.is-opened{
+        opacity: 1;
+      }
+    }
+  }
 }

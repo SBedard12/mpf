@@ -10,13 +10,13 @@ jQuery(document).ready(function ($) {
    connexion.hide();
    inscription.show();
     $(".inscription").addClass('active');
+    
    //Alternative pour changer de section
    $(".inscription").click(function(){
      connexion.hide();
      inscription.show();
      $(".inscription").addClass('active');
      $(".connexion").removeClass('active');
-    // $(".cont-Header-wrapper ul").css("right", "-130px");
      $('.cont-Header-wrapper ul').removeClass('changed');
    });
 

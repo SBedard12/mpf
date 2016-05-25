@@ -1,19 +1,10 @@
 <?php
 session_start();
 
-//connexion à la base de donnée en locale
-$servernameBd = "localhost";
-$usernameBd = "root";
-$passwordBd = "";
-$dbname = "TIM_bedards_mpf_DB";
-// Create connection
-$conn = new mysqli($servernameBd, $usernameBd, $passwordBd, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// Importation du fichier de configuration
+require_once("config.php");
 
-
+// Variables
 $msgErreurCon = "";
 $msgErreur = "";
 
@@ -145,15 +136,8 @@ if(isset($_POST['connexion'])){
 		else{
 			$msgErreurCon = "une erreur dans le formulaire";
 		}
-
-
-
-
 	}
-
-
 }
 
 mysqli_close($conn);
-//$mysqli->close();
 ?>

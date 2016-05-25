@@ -1,24 +1,17 @@
 <?php
-$servernameBd = "localhost";
-$usernameBd = "root";
-$passwordBd = "";
-$dbname = "TIM_bedards_mpf_DB";
-// Create connection
-$conn = new mysqli($servernameBd, $usernameBd, $passwordBd, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// Importation du fichier de configuration
+require_once("config.php");
 
 try {
 
+      // Requête SQL pour aller chercher les articles à afficher sur l'accueil.
       $SqlPostAccueil= "SELECT id_post, titre_post, description_post,date_post, nom_utilisateur, nom_categorie
       FROM t_posts
       INNER JOIN t_utilisateur ON t_posts.user_id = t_utilisateur.id
       INNER JOIN t_categorie ON t_posts.id_categorie = t_categorie.id_categorie
       ORDER BY id_post desc
-      LIMIT 2";
-      
+      LIMIT 10";
+
       $objResPost = $conn->query($SqlPostAccueil);
       $arrPosts[] = array();
       if($objResPost == false) {

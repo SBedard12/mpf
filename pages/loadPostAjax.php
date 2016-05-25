@@ -1,28 +1,13 @@
 <?php
-//connexion à la base de donnée en locale
-$servernameBd = "localhost";
-$usernameBd = "root";
-$passwordBd = "";
-$dbname = "TIM_bedards_mpf_DB";
-// Create connection
-$conn = new mysqli($servernameBd, $usernameBd, $passwordBd, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+
+require_once("../inc/scripts/config.php");
+
+
 
 $post_id = $_POST['last_post_id'];
 
 $output = '';
 $post = '';
-
-
-
-
-
-
-
-
 
 $sql = "SELECT id_post, titre_post, description_post,date_post, nom_utilisateur, nom_categorie
       FROM t_posts
@@ -31,15 +16,15 @@ $sql = "SELECT id_post, titre_post, description_post,date_post, nom_utilisateur,
       WHERE id_post < '".$post_id."'
       ORDER BY id_post DESC
       LIMIT 5 ";
-      
+
       $result = $conn->query($sql);
 
-	 if(mysqli_num_rows($result) > 0)  
-	 {  
-	      while($row = mysqli_fetch_array($result))  
-	      {  
-	           $post_id = $row["id_post"];  
-	           $output .= '  
+	 if(mysqli_num_rows($result) > 0)
+	 {
+	      while($row = mysqli_fetch_array($result))
+	      {
+	           $post_id = $row["id_post"];
+	           $output .= '
 	                <div class="un-post">
 						<div class="cat-post">
 							<p class="nom-cat-post"> '.$row["nom_categorie"].'</p>
@@ -56,17 +41,16 @@ $sql = "SELECT id_post, titre_post, description_post,date_post, nom_utilisateur,
 						</div>
 					</div>
 
-	                ';  
+	                ';
 
-	      }  
-	      $output .= '  
-	                <div id="remove_row" class="load-more">  
-			             <button type="button" name="btn_more" data-vid="'. $post_id  .'" id="btn_more" class="btn btn-success form-control">more</button> 
-			        </div> 
-	      ';  
-	      echo $output;  
-	 }  
+	      }
+	      $output .= '
+	                <div id="remove_row" class="load-more">
+			             <button type="button" name="btn_more" data-vid="'. $post_id  .'" id="btn_more" class="btn btn-success form-control">Voir plus</button>
+			        </div>
+	      ';
+	      echo $output;
+	 }
 
 
-
- ?>  
+ ?>
