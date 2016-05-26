@@ -2,8 +2,9 @@
 // Importation du fichier de configuration
 require_once("config.php");
 
+//   Variables
+$strErreur="";
 try {
-
       // Requête SQL pour aller chercher les articles à afficher sur l'accueil.
       $SqlPostAccueil= "SELECT id_post, titre_post, description_post,date_post, nom_utilisateur, nom_categorie
       FROM t_posts
@@ -11,8 +12,7 @@ try {
       INNER JOIN t_categorie ON t_posts.id_categorie = t_categorie.id_categorie
       ORDER BY id_post desc
       LIMIT 10";
-
-      $objResPost = $conn->query($SqlPostAccueil);
+      $objResPost = $objConnMySQLi->query($SqlPostAccueil);
       $arrPosts[] = array();
       if($objResPost == false) {
           throw new Exception('La page Accueil n\'est présentement pas disponible.');
@@ -29,10 +29,9 @@ try {
               );
           }
           $objResPost->free_result();
-
       }
   }
   catch(Exception $e) {
       $strErreur = $e->getMessage();
   }
-  $conn->close();
+  $objConnMySQLi->close();

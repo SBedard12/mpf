@@ -40,7 +40,7 @@ exit() ;
 		$post_id = $monArray['id_post'];
 		?>
 		<div id="remove_row" class="load-more">
-             <button type="button" name="btn_more" data-vid="<?php echo $post_id; ?>" id="btn_more" class="btn btn-success form-control">Voir plus</button>
+        <button type="button" name="btn_more" data-vid="<?php echo $post_id; ?>" id="btn_more" class="btn btn-success form-control">Voir plus</button>
     </div>
 		<div class="classement-post">
 			<i class="btn-menu-open mpf-th-small-outline"></i>
@@ -51,6 +51,7 @@ exit() ;
 				<li class="Humour" data-vid="3"> </li>
 			</ul>
 		</div>
+		<p> <?php echo $strErreur ?> </p>
 	</main>
 	</div>
 </body>

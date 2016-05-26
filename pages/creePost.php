@@ -37,10 +37,11 @@ exit() ;
 					</form>
 				</div>
 		</div>
+		<p> <?php echo $strErreur ?> </p>
 	</main>
   <footer></footer>
 </body>
-<script src="../js/header.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="../js/header.js"></script>
 </html>
 

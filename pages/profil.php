@@ -31,7 +31,7 @@ exit() ;
 					</form>
 
 					<div class="recents-posts">
-						<h2> Mes posts </h2>
+						<h2> Mes articles </h2>
 						<!-- <p class="succes-modification"> Les modifications ont bien été enregistrer </p> -->
 							<?php if(isset($arrUserPost)){ ?>
 							<?php foreach($arrUserPost as $monArrayPost): ?>
@@ -39,7 +39,6 @@ exit() ;
 									<div class="recent-post-categorie <?php echo $monArrayPost['nom_categorie']; ?>"></div>
 									<input id="cat-hidden" type="hidden" name="categorie_post" value="<?php echo $monArrayPost['id_categorie']; ?>">
 									<p class="recent-post-title"> <?php echo $monArrayPost['titre_post']; ?> </p>
-									<p class="recent-post-date"> <?php echo $monArrayPost['date_post']; ?> </p>
 									<ul>
 										<li><i class="mpf-pencil"></i></li>
 										<li><i class="mpf-trash" data-vid="<?php echo $monArrayPost['id_post']; ?>"></i> </li>
@@ -75,6 +74,7 @@ exit() ;
 					</div>
 			</div>
 		</div>
+		<p> <?php echo $strErreur ?> </p>
 	</main>
   <footer></footer>
 </body>

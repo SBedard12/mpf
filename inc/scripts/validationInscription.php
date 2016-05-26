@@ -7,6 +7,8 @@ require_once("config.php");
 // Variables
 $msgErreurCon = "";
 $msgErreur = "";
+$msgAccept = "";
+$strErreur="";
 
 
 // Valeur envoyées en post sur l'instriction d'un utilisateur
@@ -47,18 +49,24 @@ if(isset($_POST['inscription'])){
 			$msgErreur = "Votre courriel n'est pas identique";
 		}
 		else{
-
+			try{
 			// requête pour vérifier si le courriel existe déja
 			$query = ("SELECT id FROM t_utilisateur WHERE courriel = '$courriel'");
-
-
-			if ($result=mysqli_query($conn,$query))
-			  {
-			  // Retourne le nombre de ligne que contien la requête sql
-			  $rowcount=mysqli_num_rows($result);
-			  // Free result set
-			  mysqli_free_result($result);
-			  }
+			if($query == false) {
+					throw new Exception('Un problème est survenu, veuillez réessayer plus tard ');
+			} else {
+				if ($result=mysqli_query($objConnMySQLi,$query))
+				  {
+				  // Retourne le nombre de ligne que contien la requête sql
+				  $rowcount=mysqli_num_rows($result);
+				  // Free result set
+				  mysqli_free_result($result);
+				  }
+				}
+			}
+			catch(Exception $e) {
+					$strErreur = $e->getMessage();
+			}
 
 			// vérifie si le courriel existe déja si 1 oui
 			if($rowcount == 1){
@@ -67,31 +75,29 @@ if(isset($_POST['inscription'])){
 
 			}else{
 				 $msgErreur = "";
+				 try{
 				 //insertion d'un nouvelle account dans la bd
 				$sql = "INSERT INTO t_utilisateur (nom_utilisateur, courriel, mot_de_passe)
 						VALUES ('$username', '$courriel', '$password')";
 
-				if (mysqli_query($conn, $sql)) {
+				if (mysqli_query($objConnMySQLi, $sql)) {
 
-				    echo "New records created successfully";
+				    $msgAccept = "Votre compte a bien été crée";
 
 				} else {
 
-				    echo "Error: " . $sql . "<br>" . $conn->error;
+				    throw new Exception('Un problème est survenu, veuillez réessayer plus tard ');
 				}
-
-				// redirection vers l'accueil
-				header("Location: pages/accueil.php");
-
+			}
+			catch(Exception $e) {
+					$strErreur = $e->getMessage();
+			}
 			}
 		}
 	}
 	else{
-
 		$msgErreur = " Tous les champs doivent être remplie !";
 	}
-
-
 }
 
 //si le bouton connexion est click
@@ -100,6 +106,7 @@ if(isset($_POST['connexion'])){
 
 	$courriel = $_POST['courriel'];
 	$password = $_POST['password'];
+	$monCourriel = "";
 	//vérifie si les deux champs sont bien remplie
 	if($courriel == "" || $password == ""){
 
@@ -108,26 +115,33 @@ if(isset($_POST['connexion'])){
 	}
 	else{
 
+		try{
+
 		// on va chercher les données de la bd pour la connexion
 		$queryConnexion = ("SELECT id, courriel, mot_de_passe FROM t_utilisateur WHERE courriel = '$courriel'");
 
-		$result = $conn->query($queryConnexion);
-
-		if ($result->num_rows > 0) {
-
-	    while($row = $result->fetch_assoc()) {
-	    	$monId = $row["id"];
-	        $monCourriel = $row["courriel"];
-	        $monPassword = $row["mot_de_passe"];
-	    	}
-
+		$result = $objConnMySQLi->query($queryConnexion);
+		if($result == false) {
+				throw new Exception('Un problème est survenu, veuillez réessayer plus tard ');
+		} else {
+			
+				if ($result->num_rows > 0) {
+			    while($row = $result->fetch_assoc()) {
+			    		$monId = $row["id"];
+			        $monCourriel = $row["courriel"];
+			        $monPassword = $row["mot_de_passe"];
+			    	}
+				}
+			}
+		}
+		catch(Exception $e) {
+				$strErreur = $e->getMessage();
 		}
 
 		// vérifie si les données entré par l'utilisateur sont identique à celle de la bd
 		if($courriel ==  $monCourriel && $password == $monPassword){
 
 			$msgErreurCon = "";
-
 			$_SESSION['id'] = $monId;
 			$_SESSION['courriel'] = $monCourriel;
 			$_SESSION['mot_de_passe'] = $monPassword;
@@ -139,5 +153,5 @@ if(isset($_POST['connexion'])){
 	}
 }
 
-mysqli_close($conn);
+mysqli_close($objConnMySQLi);
 ?>

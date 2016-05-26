@@ -5,24 +5,18 @@
 @import "mpfIconsFont";
 
 /*Variables des couleurs*/
-
 $noir: #000000;
 $blanc: #ffffff;
 $grisPale: #949494;
 $grisFoncee: #3e3e3e;
-
 $primaryColor: #E07B22;
 $background: #f6f6f6;
 $erreur: #C71F22;
-
 $catAmour: #d65d5d;
 $catFamille: #5db5d6;
 $catAmis: #48b586;
 $catVoyages: #cf964c;
 $catAutre: #949494;
-
-
-
 
 
 //-------------------------------------------//
@@ -247,7 +241,7 @@ button#btn_more {
 // 03 SCSS pour la section de form de l'index
 //-------------------------------------------//
 .content-page-index{
-	width: 100%;
+	margin: 5px;
 
 	.cont-inscription-wrapper, .cont-connexion-wrapper{
 		margin:auto;
@@ -703,6 +697,7 @@ header{
         transform: scale(1.1);
       }
       &.is-opened{
+        
         opacity: 1;
       }
     }

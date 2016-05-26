@@ -35,14 +35,11 @@ exit() ;
 					<p class="date-post"> <i class="mpf-calender"> </i> <?php echo $monArraycat['date_post']; ?></p>
 					<h3 class="titre-post">	<?php echo $monArraycat['titre_post']; ?> </h3>
 					<p class="description-post"> <?php echo $monArraycat['description_post']; ?> </p>
-					<p class="description-post"> <?php echo $monArraycat['id_post']; ?> </p>
-
 				</div>
 			</div>
 
 		<?php
 		endforeach;
-		// $post_id = $arrPostsCat['id_post'];
 	  ?>
     <div class="classement-post">
 			<i class="btn-menu-open mpf-th-small-outline"></i>
@@ -53,9 +50,6 @@ exit() ;
 				<li class="Humour" data-vid="3"> </li>
 			</ul>
 		</div>
-
-
-
 	</main>
 	</div>
 </body>

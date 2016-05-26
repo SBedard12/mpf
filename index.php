@@ -5,8 +5,12 @@
 ?>
 <html>
 <head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<title>Ma premiere fois</title>
 	<link rel="stylesheet" type="text/css" href="css/app.css">
+	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body id="front-page">
@@ -53,6 +57,7 @@
 							<label> Courriel  <input type="email" name="courriel" value="<?php if(isset($courriel)){echo $courriel;} ?>"placeholder="Courriel"></label>
 							<label> Courriel Vérification <input type="email" value="<?php if(isset($courrielVerification)){echo $courrielVerification;} ?>"name="courrielVerif" placeholder="Valider courriel"></label>
 							<p class="erreurForm"><?php if(isset($courriel)){echo $msgErreur;} ?></p>
+							<p class="acceptForm"><?php  echo $msgAccept ?></p>
 							<input class="btn-action" type="submit" value="inscription" name="inscription">
 						</form>
 				</div>
